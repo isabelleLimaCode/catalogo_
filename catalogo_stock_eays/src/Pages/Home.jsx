@@ -1,44 +1,52 @@
-import { useState } from "react";
-import ProdutoCard from "../Componentes/ProdutoCard";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Typography, TextField, Button } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search'; 
+import logo from '../assets/logo3.png'; 
 
-const Home = () => {
-    const produtos1 = [
-        {
-            nome: "Produto 1",
-            descricao: "Descrição do Produto 1",
-            quantidade: 10,
-            imagem: "https://picsum.photos/200/300"
-        },
-        {
-            nome: "Produto 2",
-            descricao: "Descrição do Produto 2",
-            quantidade: 5,
-            imagem: "https://picsum.photos/200/300"
-        },
-        {
-            nome: "Produto 3",
-            descricao: "Descrição do Produto 3",
-            quantidade: 20,
-            imagem: "https://picsum.photos/200/300"
-        }
-    ];
-       
+function Home() {
+  const [companyName, setCompanyName] = useState('');
+  const navigate = useNavigate();
 
-    const [produtos, setProdutos] = useState(produtos1);
-  
-    return (
-        <div className="container">
-            <h2 className="nomeproduto">Produtos:</h2>
-            <div className="produto-container">
-                {produtos.length === 0 && <p>Carregando...</p>}
-                {produtos.length > 0 && produtos.map((produto, index) => (
-                    <div key={index.id}>
-                       <ProdutoCard produto={produto}/>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
+  const handleSearch = () => {
+    if (companyName) {
+      navigate(`/catalogo/${companyName}`);
+    }
+  };
+
+  return (
+    <div className="container">
+      <img src={logo} alt="Stock Easy Logo" className="logo-style" />
+      <Typography variant="h4" className="title">Catálogo</Typography>
+      <div className="containerInput">
+        <TextField
+          variant="outlined"
+          placeholder="Digite o nome da empresa"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+          InputProps={{
+            style: {
+              backgroundColor: 'white',
+              borderRadius: '10px 0 0 10px',
+              color: 'black',
+            },
+          }}
+        />
+        <Button className="StyledButton" onClick={handleSearch} style={{ backgroundColor: '#fff' ,height:60}}>
+          <SearchIcon style={{ color: 'black' }} /> 
+        </Button>
+      </div>
+    </div>
+  );
+}
 
 export default Home;
+
+
+
+
+
+
+
+
+

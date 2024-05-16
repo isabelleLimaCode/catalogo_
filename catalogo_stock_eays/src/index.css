@@ -1,20 +1,71 @@
-*{
-    font-family:Helvetica;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #3272B8;
+  color: white;
 }
 
-body{
-    background-color: #848beb;
-    color: #000;
-}
-a{
-    text-decoration: none;
-    color: #212b46;
-    transition: .5s;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 }
 
-a:hover{
-    color: #fff;
+header {
+  z-index: 1000; /* Garante que o cabeçalho esteja sempre acima */
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 64px); /* Altura total menos a altura do cabeçalho */
+  text-align: center;
+}
+
+.logo-style {
+  width: 500px; /* Ajuste conforme necessário */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2.5em;
+  margin: 20px 0;
+}
+
+.containerInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.containerInput input {
+  padding: 15px;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 10px 0 0 10px; /* Borda arredondada de 10 pixels */
+  outline: none;
+  width: 300px;
+  background-color: white;
+  color: black;
+}
+
+.StyledButton {
+  padding: 15px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 0 10px 10px 0; /* Borda arredondada de 10 pixels */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+  
