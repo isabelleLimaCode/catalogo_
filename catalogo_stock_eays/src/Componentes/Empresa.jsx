@@ -17,7 +17,7 @@ function Empresa() {
       }}
     >
       <img src={imagem} alt="Company Logo" style={{ width: '100%', height: 'auto', maxHeight: '200px', objectFit: 'cover' }} />
-      <Typography variant="h4" sx={{ marginTop: '10px' }}>Loja teste</Typography>
+      <Typography variant="h4" sx={{ marginTop: '10px' }}>Catalógo StockEasy</Typography>
     </Box>
   );
 }

@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { List, ListItem, ListItemText, Slider, Checkbox, FormControlLabel, Typography, Box } from '@mui/material';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../config/Firebaseconfig';
 
 function Sidebar() {
+  const [empresas, setEmpresas] = useState([]);
+
+  useEffect(() => {
+    const fetchEmpresas = async () => {
+      try {
+        const empresasRef = collection(db, 'catalogo');
+        const empresasSnapshot = await getDocs(empresasRef);
+        const empresasList = empresasSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setEmpresas(empresasList);
+      } catch (error) {
+        console.error('Error em encontrar as empresas:', error);
+      }
+    };
+
+    fetchEmpresas();
+  }, []);
+
   return (
     <Box sx={{ padding: '10px', color: 'white' }}>
-      <Typography variant="h6">Category</Typography>
+      <Typography variant="h6">Empresas</Typography>
       <List>
-        <ListItem>
-          <ListItemText primary="Mobile accessory" />
-        </ListItem>
-        {/* Adicione mais opções de filtro como ListItems aqui */}
+        {empresas.map(empresa => (
+          <ListItem key={empresa.id}>
+            <ListItemText primary={empresa.nome} />
+          </ListItem>
+        ))}
       </List>
       <Typography variant="h6">Price range</Typography>
       <Box sx={{ paddingLeft: '10px', paddingRight: '10px' }}>
@@ -34,4 +57,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
